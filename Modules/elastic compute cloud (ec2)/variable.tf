@@ -10,3 +10,5 @@ variable "key_name" {
 variable "instance_type" {
     type = string
 }
+
+variable "user_data" { default = "" }

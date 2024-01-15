@@ -14,5 +14,6 @@ resource "aws_instance" "terraform" {
    instance_type = var.instance_type
    associate_public_ip_address = true
    key_name = aws_key_pair.terraform_key.key_name
+   user_data = {}
   
 }

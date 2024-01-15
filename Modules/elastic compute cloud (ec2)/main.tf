@@ -1,6 +1,6 @@
 resource "aws_key_pair" "terraform_key" {
     key_name = var.key_name
-    public_key = file("~/.ssh/id_rsa.pub") #Replace it with the key material
+    # public_key = file("~/.ssh/id_rsa.pub") #Replace it with the key material
 
 }
 resource "local_file" "private_key" {

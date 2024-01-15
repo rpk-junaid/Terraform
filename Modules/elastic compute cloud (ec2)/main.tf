@@ -1,12 +1,14 @@
+resource "tls_private_key" "pk" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
 resource "aws_key_pair" "terraform_key" {
     key_name = var.key_name
-    public_key = file("~/.ssh/id_rsa.pub") #Replace it with the key material
+    public_key = tls_private_key.pk.public_key_openssh #Replace it with the key material
+    provisioner "local-exec" { # download to your computer!!
+    command = "echo '${tls_private_key.pk.private_key_pem}' > ./terraform.pem"
+  }
 
-}
-resource "local_file" "private_key" {
-    depends_on = [ aws_key_pair.terraform_key ]
-    content = aws_key_pair.terraform_key.private_key_pem
-    filename = "~/Downloads/terraform_key.pem"
 }
 
 resource "aws_instance" "terraform" {

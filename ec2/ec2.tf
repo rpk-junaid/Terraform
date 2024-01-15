@@ -4,7 +4,7 @@ module "ec2" {
     ami = "ami-0a7cf821b91bcccbc"
     key_name = "terraform"
     instance_type = "t2.micro"
-    provisioner "install-terraform" {
+    provisioner "remote-exec" {
         inline = [
             "sudo apt-get update && sudo apt-get install -y gnupg software-properties-common",
             "wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg",

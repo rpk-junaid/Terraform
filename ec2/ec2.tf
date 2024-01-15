@@ -5,6 +5,7 @@ module "ec2" {
     key_name = "terraform"
     instance_type = "t2.micro"
     user_data = <<EOF
+            #!/bin/bash
             "sudo apt-get update && sudo apt-get install -y gnupg software-properties-common",
             "wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg",
             "gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint",
